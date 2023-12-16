@@ -5,6 +5,8 @@ import { compare } from "bcrypt";
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
+
 import prismadb from '@/lib/prismadb';
 
 export default NextAuth({
@@ -12,6 +14,10 @@ export default NextAuth({
         GithubProvider({
             clientId: process.env.GITHUB_ID || '',
             clientSecret: process.env.GITHUB_SECRET || ''
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_ID || '',
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET || ''
         }),
         Credentials({
             id: 'credentials',
@@ -27,6 +33,7 @@ export default NextAuth({
                 }
             },
             async authorize(credentials) {
+                console.log('Received credentials:', credentials); //testando credentials
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error('Email and password required')
                 }
@@ -36,6 +43,8 @@ export default NextAuth({
                         email: credentials.email
                     }
                 });
+
+                console.log('Retrieved user from database:', user); //testando user
 
                 if (!user || !user.hashedPassword) {
                     throw new Error('Email does not exist');
@@ -55,6 +64,7 @@ export default NextAuth({
         signIn: '/auth'
     },
     debug: process.env.NODE_ENV === 'development',
+    adapter: PrismaAdapter(prismadb),
     session: {
         strategy: 'jwt'
     },

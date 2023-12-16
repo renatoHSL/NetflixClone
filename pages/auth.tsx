@@ -1,8 +1,10 @@
-import { useCallback, useState } from "react";
+// VER: USER NOVO NAO FOI CRIADO COM LOGIN VIA GITHUB
+
+import { useCallback, useState } from 'react';
 import axios from 'axios';
-import Input from "./components/input";
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import Input from './components/input';
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 
 import { FcGoogle } from 'react-icons/fc';
 import { FaGithub } from 'react-icons/fa'
@@ -17,7 +19,7 @@ const Auth = () => {
     const [variant, setVariant] = useState('login')
 
     const toggleVariant = useCallback(() => {
-        setVariant((currentVariant) => currentVariant === "login" ? "register" : 'login');
+        setVariant((currentVariant) => currentVariant === 'login' ? 'register' : 'login');
     }, []);
 
     const login = useCallback(async () => {
@@ -89,6 +91,7 @@ const Auth = () => {
                             {variant === 'login' ? 'Login' : 'Sign up'}
                         </button>
                         <div className="flex flex-row items-center gap-4 mt-8 justify-center">
+                            {/* GOOGLE BUTTON */}
                             <div className="
                                 w-10
                                 h-10
@@ -103,17 +106,20 @@ const Auth = () => {
                             ">
                                 <FcGoogle size={30}/>
                             </div>
-                            <div className="
-                                w-10
-                                h-10
-                                bg-white
-                                rounded-full
-                                flex
-                                items-center
-                                justify-center
-                                cursor-pointer
-                                hover:opacity-80
-                                transition
+                            {/* GITHUB BUTTON */}
+                            <div
+                                onClick={() => signIn('github', { callbackUrl: '/' })}
+                                className="
+                                    w-10
+                                    h-10
+                                    bg-white
+                                    rounded-full
+                                    flex
+                                    items-center
+                                    justify-center
+                                    cursor-pointer
+                                    hover:opacity-80
+                                    transition
                             ">
                                 <FaGithub size={30}/>
                             </div>
