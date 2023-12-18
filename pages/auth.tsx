@@ -1,4 +1,4 @@
-// VER: USER NOVO NAO FOI CRIADO COM LOGIN VIA GITHUB
+// TODO: USER NOVO NAO FOI CRIADO COM LOGIN VIA GITHUB
 
 import { useCallback, useState } from 'react';
 import axios from 'axios';
@@ -92,21 +92,25 @@ const Auth = () => {
                         </button>
                         <div className="flex flex-row items-center gap-4 mt-8 justify-center">
                             {/* GOOGLE BUTTON */}
-                            <div className="
-                                w-10
-                                h-10
-                                bg-white
-                                rounded-full
-                                flex
-                                items-center
-                                justify-center
-                                cursor-pointer
-                                hover:opacity-80
-                                transition
+                            <div
+                                onClick={() => signIn('google', { callbackUrl: '/' })}
+                                className="
+                                    w-10
+                                    h-10
+                                    bg-white
+                                    rounded-full
+                                    flex
+                                    items-center
+                                    justify-center
+                                    cursor-pointer
+                                    hover:opacity-80
+                                    transition
                             ">
                                 <FcGoogle size={30}/>
                             </div>
                             {/* GITHUB BUTTON */}
+                            {/* TODO
+                            REVER USER REGISTRADO */}
                             <div
                                 onClick={() => signIn('github', { callbackUrl: '/' })}
                                 className="
