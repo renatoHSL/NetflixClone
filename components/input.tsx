@@ -1,4 +1,4 @@
-// Componente input da pagina de loging
+// Componente input da pagina de logging
 
 import React from 'react';
 
