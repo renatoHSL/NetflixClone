@@ -6,6 +6,8 @@ import serverAuth from "@/lib/serverAuth";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     try {
+        // TODO problema na hora de guardar os favoritos
+        // Erro de "not sign in no console"
         if (req.method === 'POST') {
             const { currentUser } = await serverAuth(req);
 
@@ -57,7 +59,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                     email: currentUser.email || '',
                 },
                 data: {
-                    // TODO CORRIGIR O ERRO
                     favoriteIds: updatedFavoriteIds,
                 }
             });
@@ -68,6 +69,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return res.status(405).end();
     } catch (error) {
         console.log(error);
+        console.log('error aqui');
         return res.status(400).end();
     }
 }

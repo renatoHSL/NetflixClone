@@ -39,7 +39,7 @@ const FavoriteButton: React.FC<FavoriteButtonProps> = ({ movieId }) => {
 
     }, [movieId, isFavorite, currentUser, mutate, mutateFavorites]);
 
-    const Icon = isFavorite ? AiOutlinePlus : AiOutlineCheck;
+    const Icon = isFavorite ? AiOutlineCheck : AiOutlinePlus;
 
     return (
         <div
